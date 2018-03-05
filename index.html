@@ -11,15 +11,44 @@
 
         <title>GifTastic</title>
     </head>
+
     <body>
+        <!-- header: gif buttons -->
+        <header class="container">
 
+        </header>
 
+        <!-- main: images & add button -->
+        <main class="container">
+            <div class="row">
 
+                <!-- images -->
+                <div class="col-8" id="">
+
+                </div>
+
+                <!-- add button -->
+                <div class="col-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="search-term">Add an Animal</label>
+                            <input type="text" class="form-control" id="search-term" placeholder="">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="search-endpoint">Search</button>
+                        <button type="submit" class="btn btn-primary" id="random-endpoint">Random</button>
+                    </form>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Javascript: jquery and .js -->
         <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-        <script src="assets/javascript/app.js"></script>
-        <!-- <script src="notes/test.js"></script>  -->
+        <!-- <script src="assets/javascript/app.js"></script> -->
+        <script src="dev/dev.js"></script> 
+
     </body>
 </html>

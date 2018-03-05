@@ -1,0 +1,20 @@
+GENERAL RULES
+    gif buttons on header, right is search section, left is where gifs populate;
+    be able to search for any gif type within the theme, ie search cat if theme is animals;
+    clicking search button creates button in button header section;
+    click on gif button pulls gifs from giphy and loads them to the screen;
+
+HTML/CSS
+    header & main;
+    header for gif buttons
+    main right has search section;
+    main left for gifs to populate;
+
+JAVASCRIPT
+    use .get AJAX method;
+    optional:
+        be able to search giphy's differeNt sections, for example search main, search trending, random, etc;
+        different buttons for each search type;
+
+PROBLEM FINDING; PROBLEM SOLVING
+    
