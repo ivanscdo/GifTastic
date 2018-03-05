@@ -17,4 +17,10 @@ JAVASCRIPT
         different buttons for each search type;
 
 PROBLEM FINDING; PROBLEM SOLVING
-    
+    v1.0:
+        completed successful test of .get, breaking sections of query url into variables.
+
+    problem 1.1
+        capture user input, search, and log
+
+
