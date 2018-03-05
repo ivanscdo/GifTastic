@@ -1,0 +1,15 @@
+.btn-space {
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.sticky-side {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 12%;
+    z-index: 1020;
+}
+
+.head-pad {
+    margin-bottom: 10px;
+}

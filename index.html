@@ -14,8 +14,7 @@
 
     <body>
         <!-- header: gif buttons -->
-        <header class="container" id="jean-jacket">
-
+        <header class="container sticky-top head-pad" id="jean-jacket">
         </header>
 
         <!-- main: images & search field -->
@@ -23,13 +22,11 @@
             <div class="row">
 
                 <!-- images -->
-                <div class="col-8" id="">
-
-                </div>
+                <div class="col" id="album"></div>
 
                 <!-- search field -->
-                <div class="col-4">
-                    <form>
+                <div class="col-3">
+                    <form class="sticky-side" > 
                         <div class="form-group">
                             <label for="search-term">Add Gif</label>
                             <input type="text" class="form-control" id="search-term" placeholder="">
@@ -37,7 +34,7 @@
                         <!-- search endpoint button -->
                         <button type="submit" class="btn btn-primary" id="search-endpoint">Search</button>
                         <!-- random endpoint button -->
-                        <button type="submit" class="btn btn-primary" id="random-endpoint">Random</button>
+                        <button type="submit" class="btn btn-danger" id="random-endpoint">Random</button>
                     </form>
                 </div>
 
