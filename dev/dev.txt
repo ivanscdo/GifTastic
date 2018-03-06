@@ -23,4 +23,7 @@ PROBLEM FINDING; PROBLEM SOLVING
     problem 1.1
         capture user input, search, and log
 
+    need to create an "i'm feeling lucky button" where the user can search, click and it automatically opens that gif in the #album.
+
+    
 
