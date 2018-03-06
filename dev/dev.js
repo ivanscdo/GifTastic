@@ -58,7 +58,7 @@ $( document ).ready(function() {
     //     gifButton.attr("id", searchTerm);
     // });
     
-    var topics = ["game of life", "volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild"];
+    var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild", "game of life", "fractals", "tesseract", "hunab ku"];
 
     var counter = 0;
     
@@ -173,24 +173,89 @@ $( document ).ready(function() {
     // END OF: $("#search-endpoint").on("click", function(){
     });
     
-        $('body').on('click','img',function(){
-            // console.log("test!");
-            var statusCheck = $(this).attr("data-status");
-            var play = $(this).attr("data-animate");
-            var pause = $(this).attr("data-still")
+    $('body').on('click','img',function(){
+        // console.log("test!");
+        var statusCheck = $(this).attr("data-status");
+        var play = $(this).attr("data-animate");
+        var pause = $(this).attr("data-still")
+        
+        if (statusCheck === "pause" ) {
+            $(this).attr("src", play );
+            $(this).attr("data-status", "play");
             
-            if (statusCheck === "pause" ) {
-                $(this).attr("src", play );
-                $(this).attr("data-status", "play");
-                
-            } else if ( statusCheck === "play") {
-                $(this).attr("src", pause );
-                $(this).attr("data-status", "pause");
-                
-            }
+        } else if ( statusCheck === "play") {
+            $(this).attr("src", pause );
+            $(this).attr("data-status", "pause");
+            
+        }
 
-        // END OF: $('body').on('click','img',function(){
+    // END OF: $('body').on('click','img',function(){
+    });
+
+        // $("#game-of-life").on("click", function(){
+        //     event.preventDefault();
+
+        //     console.log("game of life!");
+
+        //     // $("#album").css("background-image", "url(https://giphy.com/embed/2fQGKY07fk7Li)");
+        //     // $("#album").css("background-color", "teal");
+        //     // $("body").css("background-image", "https://giphy.com/embed/2fQGKY07fk7Li" );
+        //     // $("body").css("background-color", "teal");
+        //     // document.body.style.backgroundImage = "url('https://giphy.com/embed/2fQGKY07fk7Li')";
+        //     $("body").css('background-image', 'url(https://media1.giphy.com/media/jJiyfNbCbxhn2/giphy.gif)');
+
+        // })
+
+        $("#random-endpoint").on("click", function() {
+            event.preventDefault();
+            
+            var queryURL = "https://api.giphy.com";
+            var randomEndPoint = "/v1/gifs/random" + "?rating=g&tag=";
+            // var tag = $("#search-term").val().trim();
+            var apiKey = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
+    
+            queryURL += [
+                randomEndPoint +
+                // tag +
+                apiKey
+            ];
+    
+            var dotGet = $.get(queryURL);
+    
+            dotGet.then(function(response) { 
+                console.log(response);
+                
+                // var animateURL = response.data.images.fixed_height.url;
+                // var stillURL = response.data.images.fixed_height_still.url;
+                var randomTitle = response.data.title;
+                topics.push(randomTitle);
+
+                // var gifHolder = $("<div class=\"gif-holder\">");
+
+                // var gifElement = $("<img>");
+                // gifElement.attr("src", stillURL);
+                // gifElement.attr("data-still", stillURL );
+                // gifElement.attr("data-animate", animateURL );
+                // gifElement.attr("data-status", "pause" );
+                
+                // var ratingElement = $("<div class=\"text-capitalize rating\">");
+                // ratingElement.text("rating: g");
+
+                // $(gifHolder).prependTo("div#album")
+                // $(ratingElement).prependTo(gifHolder);
+                // $(gifElement).prependTo(gifHolder);
+                
+                
+            // END OF: dotGet.then(function(response) { 
+            });
+                    
+            topicAdder();
+            gifCreator();
+
+        // END OF: $("#random-endpoint").on("click", function() {
         });
+
+
     
     // END OF: $( document ).ready(function() {
     });
