@@ -58,7 +58,7 @@ $( document ).ready(function() {
     //     gifButton.attr("id", searchTerm);
     // });
     
-    var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild", "game of life", "fractals", "tesseract", "hunab ku"];
+    var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild", "game of life", "fractals"];
 
     var counter = 0;
     
@@ -92,49 +92,68 @@ $( document ).ready(function() {
         $(".gif-button").on("click", function(){
         // console.log("button clicked!");
     
-            var queryURL = "https://api.giphy.com";
-            var searchEndPoint = "/v1/gifs/search" + "?rating=g&q=";
-            var searchTerm = $(this).attr("id");
-            var apiKey = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
-            var limit = "&limit=10";
+            var queryURL        = "https://api.giphy.com",
+                searchEndPoint  = "/v1/gifs/search",
+                searchTerm      = "?q=" + $(this).attr("id"),
+                apiKey          = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe",
+                rating          = "&rating=g"
+                limit           = "&limit=10";
     
             queryURL += [
                 searchEndPoint +
                 searchTerm +
                 apiKey +
+                rating +
                 limit
             ];
     
             var dotGet = $.get(queryURL);
     
             for(let i = 0; i < 10; i++) {
+              
                 dotGet.then(function(response) { 
-                    console.log("red wine, success! ", response);
+                    // console.log("red wine, success! ", response);
                     // console.log(response.data[i].url); 
                     
-                    var animateURL = response.data[i].images.fixed_height.url;
-                    var gifRating = response.data[i].rating;
-                    var stillURL = response.data[i].images.fixed_height_still.url;
-                    // var stillURL = response.data[i].images.fixed_width_still.url;
-                    
-                    // console.log(stillURL);
-                    // console.log(response.data[i].images)
-    
-                    var gifHolder = $("<div class=\"gif-holder\">");
-
-                    var gifElement = $("<img>");
+                    var stillURL      = response.data[i].images.fixed_height_still.url,
+                        animateURL    = response.data[i].images.fixed_height.url,
+                        gifRating     = response.data[i].rating,
+                        gifHolder     = $("<div class=\"gif-holder\">"),
+                        gifElement    = $("<img class=\"rounded\">"),
+                        ratingElement = $("<div class=\"text-capitalize rating\">");
+                        
                     gifElement.attr("src", stillURL);
                     gifElement.attr("data-still", stillURL );
                     gifElement.attr("data-animate", animateURL );
                     gifElement.attr("data-status", "pause" );
-                    // gifElement.attr("class", searchTerm );
                     
-                    var ratingElement = $("<div class=\"text-capitalize rating\">");
                     ratingElement.text("rating: " + gifRating);
-
-                    $(gifHolder).prependTo("div#album")
-                    $(ratingElement).prependTo(gifHolder);
+                    
+                    $(gifHolder).prependTo("div#album");
                     $(gifElement).prependTo(gifHolder);
+                    $(ratingElement).prependTo(gifHolder);
+                    
+                      
+                      // var stillURL = response.data[i].images.fixed_width_still.url;
+                      
+                      // console.log(stillURL);
+                      // console.log(response.data[i].images)
+      
+                      // var gifHolder = $("<div class=\"gif-holder\">");
+    
+                      // var gifElement = $("<img>");
+                      // gifElement.attr("src", stillURL);
+                      // gifElement.attr("data-still", stillURL );
+                      // gifElement.attr("data-animate", animateURL );
+                      // gifElement.attr("data-status", "pause" );
+                      // gifElement.attr("class", searchTerm );
+                      
+                      // var ratingElement = $("<div class=\"text-capitalize rating\">");
+                      // ratingElement.text("rating: " + gifRating);
+    
+                      // $(gifHolder).prependTo("div#album")
+                      // $(ratingElement).prependTo(gifHolder);
+                      // $(gifElement).prependTo(gifHolder);
                     
                 // END OF: dotGet.then(function(response) { 
                 });
@@ -157,16 +176,18 @@ $( document ).ready(function() {
         
         if (searchTerm === "") {
             
-            return;
+          // $("#search-term").attr("placeholder", "Type something dummy");
+          return;
             
         } else {
+          // $("#search-term").attr("placeholder", "");
             
-        topics.push(searchTerm);
-        // console.log(topics);
-            $("#search-term").val(" ");
-
-        topicAdder();
-        gifCreator();
+          topics.push(searchTerm);
+          // console.log(topics);
+          $("#search-term").val(" ");
+  
+          topicAdder();
+          gifCreator();
             
         }
 
@@ -175,15 +196,17 @@ $( document ).ready(function() {
     
     $('body').on('click','img',function(){
         // console.log("test!");
-        var statusCheck = $(this).attr("data-status");
-        var play = $(this).attr("data-animate");
-        var pause = $(this).attr("data-still")
+        var statusCheck = $(this).attr("data-status"),
+            play        = $(this).attr("data-animate"),
+            pause       = $(this).attr("data-still");
         
         if (statusCheck === "pause" ) {
+          
             $(this).attr("src", play );
             $(this).attr("data-status", "play");
             
         } else if ( statusCheck === "play") {
+          
             $(this).attr("src", pause );
             $(this).attr("data-status", "pause");
             
@@ -206,56 +229,108 @@ $( document ).ready(function() {
 
         // })
 
-        $("#random-endpoint").on("click", function() {
-            event.preventDefault();
+    $("#random-endpoint").on("click", function() {
+        event.preventDefault();
+        // console.log("random button click!");
+        
+        // var queryURL = "https://api.giphy.com";
+        // var randomEndPoint = "/v1/gifs/random" + "?rating=g&tag=";
+        // // var tag = $("#search-term").val().trim();
+        // var apiKey = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
+        
+        var queryURL        = "https://api.giphy.com",
+            randomEndPoint  = "/v1/gifs/random" + "?",
+            rating          = "rating=g",         
+            apiKey          = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
+
+        queryURL += [
+            randomEndPoint +
+            rating +
+            apiKey
+        ];
+
+        var dotGet = $.get(queryURL);
+
+        dotGet.then(function(response) { 
+            // console.log(response);
+            // console.log("inside dotGet func");
             
-            var queryURL = "https://api.giphy.com";
-            var randomEndPoint = "/v1/gifs/random" + "?rating=g&tag=";
-            // var tag = $("#search-term").val().trim();
-            var apiKey = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
-    
-            queryURL += [
-                randomEndPoint +
-                // tag +
-                apiKey
-            ];
-    
-            var dotGet = $.get(queryURL);
-    
-            dotGet.then(function(response) { 
-                console.log(response);
-                
-                // var animateURL = response.data.images.fixed_height.url;
-                // var stillURL = response.data.images.fixed_height_still.url;
-                var randomTitle = response.data.title;
-                topics.push(randomTitle);
+            // var animateURL = response.data.images.fixed_height.url;
+            // var stillURL = response.data.images.fixed_height_still.url;
+            var randomTitle = response.data.title;
+            
+            if (randomTitle === "") {
+              
+              return;
+              
+            } else {
+              
+              topics.push(randomTitle);
+            
+            }
+            
+            // console.log(randomTitle);
 
-                // var gifHolder = $("<div class=\"gif-holder\">");
+            // var gifHolder = $("<div class=\"gif-holder\">");
 
-                // var gifElement = $("<img>");
-                // gifElement.attr("src", stillURL);
-                // gifElement.attr("data-still", stillURL );
-                // gifElement.attr("data-animate", animateURL );
-                // gifElement.attr("data-status", "pause" );
-                
-                // var ratingElement = $("<div class=\"text-capitalize rating\">");
-                // ratingElement.text("rating: g");
+            // var gifElement = $("<img>");
+            // gifElement.attr("src", stillURL);
+            // gifElement.attr("data-still", stillURL );
+            // gifElement.attr("data-animate", animateURL );
+            // gifElement.attr("data-status", "pause" );
+            
+            // var ratingElement = $("<div class=\"text-capitalize rating\">");
+            // ratingElement.text("rating: g");
 
-                // $(gifHolder).prependTo("div#album")
-                // $(ratingElement).prependTo(gifHolder);
-                // $(gifElement).prependTo(gifHolder);
-                
-                
-            // END OF: dotGet.then(function(response) { 
-            });
-                    
+            // $(gifHolder).prependTo("div#album")
+            // $(ratingElement).prependTo(gifHolder);
+            // $(gifElement).prependTo(gifHolder);
+            
             topicAdder();
             gifCreator();
-
-        // END OF: $("#random-endpoint").on("click", function() {
+            
+            
+        // END OF: dotGet.then(function(response) { 
         });
+                
 
+
+    // END OF: $("#random-endpoint").on("click", function() {
+    });
+        
+    $(function() {
+
+        var $sidebar   = $("#sidebar"), 
+            $window    = $(window),
+            offset     = $sidebar.offset(),
+            // topPadding = 50;
+            topPadding = $("#jean-jacket").height();
+
+  
+      $window.scroll(function() {
+            // if ($window.scrollTop() > offset.top) {
+            if ($window.scrollTop() > 0) {    
+              // $sidebar.stop().animate({
+              //     marginTop: $window.scrollTop() - offset.top + topPadding
+              // });
+              $sidebar.css("margin-top", $window.scrollTop() - offset.top + topPadding + 10);
+            } else {
+              // $sidebar.stop().animate({
+              //     marginTop: 0
+              // });
+              $sidebar.css("margin-top", 0);
+            }
+            console.log("scroll!");
+            console.log("sidebar.offset.top:", $("#sidebar").offset().top);
+            console.log("window.scrollTop:", $(window).scrollTop() );
+          
+        // END OF: $window.scroll(function() {
+        });
+      
+        
+    // END OF: $(function() {
+    });
 
     
-    // END OF: $( document ).ready(function() {
-    });
+  // END OF: $( document ).ready(function() {
+  });

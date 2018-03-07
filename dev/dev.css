@@ -3,12 +3,12 @@
     margin-top: 5px;
 }
 
-.sticky-side {
+/*.sticky-side {*/
     /* position: -webkit-sticky; */
-    position: sticky;
-    top: 15%;
-    z-index: 1020;
-}
+/*    position: sticky;*/
+/*    top: 15%;*/
+/*    z-index: 1020;*/
+/*}*/
 
 /* .stickier-side {
     position: sticky;
@@ -43,3 +43,7 @@ img {
 /*  height: 500px;*/
 /*  overflow-y: scroll;*/
 /*}*/
+
+.gif-holder {
+    margin: 0 10px 20px; 
+}
