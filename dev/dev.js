@@ -60,13 +60,23 @@ $( document ).ready(function() {
     
     var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild", "game of life", "fractals"];
 
-    var counter = 0;
+    var counter = {
+        "topicAdder": 0,
+        "trending": 1
+    };
+
+    var trendingBtn = $("<button>");
+    trendingBtn.attr("type", "submit");
+    trendingBtn.attr("class", "btn btn-success btn-space");
+    trendingBtn.attr("id", "trending-endpoint");
+    trendingBtn.text("Trending");
+    trendingBtn.appendTo("#jean-jacket");
     
     function topicAdder () {
         
         for ( let i = 0; i < topics.length; i++) {
             
-            if ( counter === i) {
+            if ( counter.topicAdder === i) {
             
             var gifButton = $("<button>");
             gifButton.text(topics[i]);
@@ -74,7 +84,7 @@ $( document ).ready(function() {
             // gifButton.attr("class", "btn btn-outline-danger gif-button");
             gifButton.attr("class", "btn btn-info btn-space gif-button");
             gifButton.attr("id", topics[i]);
-            counter++;
+            counter.topicAdder++;
             
             // END OF: if ( counter === i) {
             }
@@ -240,13 +250,15 @@ $( document ).ready(function() {
         
         var queryURL        = "https://api.giphy.com",
             randomEndPoint  = "/v1/gifs/random" + "?",
-            rating          = "rating=g",         
-            apiKey          = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe";
+            apiKey          = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe",
+            rating          = "&rating=g";         
+            
 
         queryURL += [
             randomEndPoint +
-            rating +
-            apiKey
+            apiKey +
+            rating
+            
         ];
 
         var dotGet = $.get(queryURL);
@@ -320,15 +332,78 @@ $( document ).ready(function() {
               // });
               $sidebar.css("margin-top", 0);
             }
-            console.log("scroll!");
-            console.log("sidebar.offset.top:", $("#sidebar").offset().top);
-            console.log("window.scrollTop:", $(window).scrollTop() );
+            // console.log("scroll!");
+            // console.log("sidebar.offset.top:", $("#sidebar").offset().top);
+            // console.log("window.scrollTop:", $(window).scrollTop() );
           
         // END OF: $window.scroll(function() {
         });
       
         
     // END OF: $(function() {
+    });
+
+    $("#trending-endpoint").on("click", function() {
+        event.preventDefault();
+        
+        var queryURL            = "https://api.giphy.com",
+            trendingEndPoint    = "/v1/gifs/trending" + "?",
+            apiKey              = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe",
+            rating              = "&rating=g",
+            // limit               = "&limit=" + parseInt(1 + counter.trending);
+            limit               = "&limit=10";
+            
+        queryURL += [
+            trendingEndPoint +
+            apiKey +
+            rating +
+            limit          
+        ];
+
+        var dotGet = $.get(queryURL);
+
+        for (let i = 0; i < 10; i++) {
+
+            dotGet.then(function(response) { 
+                console.log(response);
+                // console.log("title:", response.data[counter.trending].title);
+
+                // var trendingTitle = response.data[counter.trending].title;
+                // topics.push(trendingTitle)
+                // counter.trending++; 
+
+                var animateURL      = response.data[i].images.fixed_height.url,
+                    stillURL        = response.data[i].images.fixed_height_still.url,
+                    randomTitle     = response.data[i].title,
+                    gifRating       = response.data[i].rating,
+                    gifHolder       = $("<div class=\"gif-holder\">"),
+                    gifElement      = $("<img>"),
+                    ratingElement   = $("<div class=\"text-capitalize rating\">");
+                
+                gifElement.attr("src", stillURL);
+                gifElement.attr("data-still", stillURL );
+                gifElement.attr("data-animate", animateURL );
+                gifElement.attr("data-status", "pause" );
+                
+                ratingElement.text("rating: " + gifRating);
+                
+                $(gifHolder).prependTo("div#album");
+                $(gifElement).prependTo(gifHolder);
+                $(ratingElement).prependTo(gifHolder);
+                
+                
+                
+                topicAdder();
+                gifCreator();
+
+                
+                
+                
+            // END OF: dotGet.then(function(response) { 
+            });
+        }
+
+    //END OF: $("#trending-endpoint").on("click", function() {
     });
 
     
