@@ -67,11 +67,12 @@ $( document ).ready(function() {
 
     var trendingBtn = $("<button>");
     trendingBtn.attr("type", "submit");
-    trendingBtn.attr("class", "btn btn-success btn-space");
+    trendingBtn.attr("class", "btn btn-success btn-space gif-button");
     trendingBtn.attr("id", "trending-endpoint");
     trendingBtn.text("Trending");
     trendingBtn.appendTo("#jean-jacket");
     
+
     function topicAdder () {
         
         for ( let i = 0; i < topics.length; i++) {
@@ -164,12 +165,26 @@ $( document ).ready(function() {
                       // $(gifHolder).prependTo("div#album")
                       // $(ratingElement).prependTo(gifHolder);
                       // $(gifElement).prependTo(gifHolder);
+
+
                     
                 // END OF: dotGet.then(function(response) { 
                 });
     
             // END OF: for(let i = 0; i < 10; i++) {    
             }
+
+        if ( $(window).scrollTop() > 0) {
+
+            window.scrollTo(0,0).animate();
+
+            // $("#album").stop().animate({
+
+            //     marginTop: 0
+
+            // });
+
+        }
             
         // END OF: $(".gif-button").on("click", function(){
         });
@@ -332,9 +347,9 @@ $( document ).ready(function() {
               // });
               $sidebar.css("margin-top", 0);
             }
-            // console.log("scroll!");
-            // console.log("sidebar.offset.top:", $("#sidebar").offset().top);
-            // console.log("window.scrollTop:", $(window).scrollTop() );
+            console.log("scroll!");
+            console.log("sidebar.offset.top:", $("#sidebar").offset().top);
+            console.log("window.scrollTop:", $(window).scrollTop() );
           
         // END OF: $window.scroll(function() {
         });
@@ -405,6 +420,29 @@ $( document ).ready(function() {
 
     //END OF: $("#trending-endpoint").on("click", function() {
     });
+
+    // $("#test").on("click", function(){
+
+    //     var w = $(window).scrollTop();
+    //     console.log(w);
+
+    //     if ( w > 0) {
+
+    //         console.log ("w is greater than 0!");
+    //         window.scrollTo(0,0);
+    //         // console.log( $(window).scrollTop );
+
+    //         // $(window).stop().animate({
+
+    //         // });
+
+
+    //     }
+
+
+
+    // // END OF: $("#test").on("click", function(){
+    // });
 
     
   // END OF: $( document ).ready(function() {

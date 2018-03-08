@@ -23,7 +23,18 @@ PROBLEM FINDING; PROBLEM SOLVING
     problem 1.1
         capture user input, search, and log
 
-    need to create an "i'm feeling lucky button" where the user can search, click and it automatically opens that gif in the #album.
+    <86>
+        need to create an "i'm feeling lucky button" where the user can search, click and it automatically opens that gif in the #album.
+    </86>
 
-    
+    problem 1.2 - 1.5
+        push gif stills to page
+        gif button and sticky header and sticky sidebar
+        gif spacing, improved sticky sidebar (function)
+        added trending button
 
+    problem 1.6
+        make it scroll all the way up when you click search or random or any gif button
+
+    problem 1.7
+        make it highlight the gif button you are currently on
