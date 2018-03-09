@@ -1,3 +1,7 @@
+/* body {
+    position: relative;
+} */
+
 .btn-space {
     margin-right: 5px;
     margin-top: 5px;
@@ -28,6 +32,7 @@
 
 #album {
   margin-top: 10px;
+  /* position: relative; */
 }
 
 .gif-holder {
@@ -46,4 +51,12 @@ img {
 
 .gif-holder {
     margin: 0 10px 20px; 
+}
+
+
+#sidebar {
+
+    position: fixed;
+    right: 5%;
+    top: 20%;
 }

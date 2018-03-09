@@ -58,7 +58,7 @@ $( document ).ready(function() {
     //     gifButton.attr("id", searchTerm);
     // });
     
-    var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "chrono trigger", "breath of the wild", "game of life", "fractals"];
+    var topics = ["volkswagen", "cooking", "poetry", "epl", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "final fantasy tactics", "breath of the wild", "game of life", "fractals"];
 
     var counter = {
         "topicAdder": 0,
@@ -66,7 +66,9 @@ $( document ).ready(function() {
     };
 
     var trendingBtn = $("<button>");
+    // var trendingBtn = $("<a>");
     trendingBtn.attr("type", "submit");
+    // trendingBtn.attr("href", "#Trending");
     trendingBtn.attr("class", "btn btn-success btn-space gif-button");
     trendingBtn.attr("id", "trending-endpoint");
     trendingBtn.text("Trending");
@@ -174,17 +176,19 @@ $( document ).ready(function() {
             // END OF: for(let i = 0; i < 10; i++) {    
             }
 
-        if ( $(window).scrollTop() > 0) {
+        // if ( $(window).scrollTop() > 0) {
 
-            window.scrollTo(0,0).animate();
+            // $(window).scrollTop(0);
+            
 
-            // $("#album").stop().animate({
+            $("html, body").animate({
+                scrollTop: 0
+            }, 250);
 
-            //     marginTop: 0
+            
+            
 
-            // });
-
-        }
+        // }
             
         // END OF: $(".gif-button").on("click", function(){
         });
@@ -193,6 +197,10 @@ $( document ).ready(function() {
     }
     
     gifCreator();
+
+    // $("#album").scrollspy({
+    //     target: "#jean-jacket"
+    // })
     
     $("#search-endpoint").on("click", function(){
         event.preventDefault()
@@ -325,38 +333,46 @@ $( document ).ready(function() {
     // END OF: $("#random-endpoint").on("click", function() {
     });
         
-    $(function() {
+    // function stickySidebar() {
+    // // $(function(){
 
-        var $sidebar   = $("#sidebar"), 
-            $window    = $(window),
-            offset     = $sidebar.offset(),
-            // topPadding = 50;
-            topPadding = $("#jean-jacket").height();
+
+    //     var $sidebar   = $("#sidebar"), 
+    //         $window    = $(window),
+    //         offset     = $sidebar.offset(),
+    //         // topPadding = 50;
+    //         topPadding = $("#jean-jacket").height();
 
   
-      $window.scroll(function() {
-            // if ($window.scrollTop() > offset.top) {
-            if ($window.scrollTop() > 0) {    
-              // $sidebar.stop().animate({
-              //     marginTop: $window.scrollTop() - offset.top + topPadding
-              // });
-              $sidebar.css("margin-top", $window.scrollTop() - offset.top + topPadding + 10);
-            } else {
-              // $sidebar.stop().animate({
-              //     marginTop: 0
-              // });
-              $sidebar.css("margin-top", 0);
-            }
-            console.log("scroll!");
-            console.log("sidebar.offset.top:", $("#sidebar").offset().top);
-            console.log("window.scrollTop:", $(window).scrollTop() );
+    //     $window.scroll(function() {
+    //         // if ($window.scrollTop() > offset.top) {
+    //         if ($window.scrollTop() > 0) {    
+    //           // $sidebar.stop().animate({
+    //           //     marginTop: $window.scrollTop() - offset.top + topPadding
+    //           // });
+    //           $sidebar.css("margin-top", $window.scrollTop() - offset.top + topPadding + 10);
+    //         //   console.log("sidebar margin: ", $sidebar.css("margin-top"))
+    //         } else {
+    //           // $sidebar.stop().animate({
+    //           //     marginTop: 0
+    //           // });
+    //           $sidebar.css("margin-top", 0);
+    //         }
+    //         // console.log("scroll!");
+    //         // console.log("sidebar.offset.top:", $("#sidebar").offset().top);
+    //         // console.log("window.scrollTop:", $(window).scrollTop() );
           
-        // END OF: $window.scroll(function() {
-        });
+    //     // END OF: $window.scroll(function() {
+    //     });
       
         
-    // END OF: $(function() {
-    });
+    // // // END OF: $(function() {
+    // // });
+
+    // // END OF: function stickySidebar() {
+    // };
+
+    // stickySidebar()
 
     $("#trending-endpoint").on("click", function() {
         event.preventDefault();
@@ -408,7 +424,7 @@ $( document ).ready(function() {
                 
                 
                 
-                topicAdder();
+                // topicAdder();
                 gifCreator();
 
                 
@@ -416,10 +432,15 @@ $( document ).ready(function() {
                 
             // END OF: dotGet.then(function(response) { 
             });
+
+        // END OF: for (let i = 0; i < 10; i++) {
         }
 
     //END OF: $("#trending-endpoint").on("click", function() {
     });
+
+    
+
 
     // $("#test").on("click", function(){
 

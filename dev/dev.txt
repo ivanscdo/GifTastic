@@ -13,7 +13,7 @@ HTML/CSS
 JAVASCRIPT
     use .get AJAX method;
     optional:
-        be able to search giphy's differeNt sections, for example search main, search trending, random, etc;
+        be able to search giphy's different sections, for example search main, search trending, random, etc;
         different buttons for each search type;
 
 PROBLEM FINDING; PROBLEM SOLVING
