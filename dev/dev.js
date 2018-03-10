@@ -546,6 +546,84 @@ $( document ).ready(function() {
     // END OF: $("#pause-all").on("click", function (){
     });
 
+    $("#open-all").on("click", function(){
+        event.preventDefault();
+
+
+        $(".gif-button").each(function(){
+
+            // console.log("button clicked!");
+        
+                var queryURL        = "https://api.giphy.com",
+                    searchEndPoint  = "/v1/gifs/search",
+                    searchTerm      = "?q=" + $(this).attr("id"),
+                    apiKey          = "&api_key=" + "7gCY693a53ZjIQPAsatsvX9jwLXFFcNe",
+                    rating          = "&rating=g"
+                    limit           = "&limit=10";
+        
+                queryURL += [
+                    searchEndPoint +
+                    searchTerm +
+                    apiKey +
+                    rating +
+                    limit
+                ];
+        
+                var dotGet = $.get(queryURL);
+        
+                for(let i = 0; i < 10; i++) {
+                  
+                    dotGet.then(function(response) { 
+                        // console.log("red wine, success! ", response);
+                        // console.log(response.data[i].url); 
+                        
+                        var stillURL      = response.data[i].images.fixed_height_still.url,
+                            animateURL    = response.data[i].images.fixed_height.url,
+                            gifRating     = response.data[i].rating,
+                            gifHolder     = $("<div class=\"gif-holder\">"),
+                            gifElement    = $("<img class=\"rounded\">"),
+                            ratingElement = $("<div class=\"text-capitalize rating\">");
+                            
+                        gifElement.attr("src", stillURL);
+                        gifElement.attr("data-still", stillURL );
+                        gifElement.attr("data-animate", animateURL );
+                        gifElement.attr("data-status", "pause" );
+                        
+                        ratingElement.text("rating: " + gifRating);
+                        
+                        $(gifHolder).appendTo("div#album");
+                        $(ratingElement).appendTo(gifHolder);
+                        $(gifElement).appendTo(gifHolder);
+                        
+                        
+                    // END OF: dotGet.then(function(response) { 
+                    });
+        
+                // END OF: for(let i = 0; i < 10; i++) {    
+                }
+                
+    
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 250);
+                
+        // END OF: $(".gif-button").each(function(){
+        });
+
+    // END OF: $("#open-all").on("click", function(){
+    });
+
+
+    $("#close-all").on("click", function(){
+        event.preventDefault();
+
+        $(".gif-holder").remove();
+
+
+
+
+    });
+
     
   // END OF: $( document ).ready(function() {
   });
