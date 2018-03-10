@@ -1,15 +1,39 @@
+body {
+    position: relative;
+}
+
 .btn-space {
     margin-right: 5px;
     margin-top: 5px;
 }
 
-.sticky-side {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 12%;
-    z-index: 1020;
-}
-
 .head-pad {
     margin-bottom: 10px;
+}
+
+.rating {
+  display: inline;
+}
+
+#album {
+  margin-top: 10px;
+}
+
+.gif-holder {
+  float: left;
+  display: inline;
+}
+
+img {
+    display: block;
+}
+
+.gif-holder {
+    margin: 0 5px 15px; 
+}
+
+#sidebar {
+    position: fixed;
+    right: 5%;
+    top: auto;
 }

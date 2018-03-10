@@ -19,7 +19,6 @@ JAVASCRIPT
 PROBLEM FINDING; PROBLEM SOLVING
 
     problems-bin:
-        open all, clear all
         make it highlight the gif button you are currently on - scrollspy
 
 
@@ -44,5 +43,8 @@ PROBLEM FINDING; PROBLEM SOLVING
 
     problem 1.7
         play all & pause all button
+
+    problem 1.8
+        open all & close all butons
 
     

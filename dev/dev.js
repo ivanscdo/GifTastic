@@ -591,9 +591,9 @@ $( document ).ready(function() {
                         
                         ratingElement.text("rating: " + gifRating);
                         
-                        $(gifHolder).appendTo("div#album");
-                        $(ratingElement).appendTo(gifHolder);
-                        $(gifElement).appendTo(gifHolder);
+                        $(gifHolder).prependTo("div#album");
+                        $(gifElement).prependTo(gifHolder);
+                        $(ratingElement).prependTo(gifHolder);
                         
                         
                     // END OF: dotGet.then(function(response) { 
@@ -602,7 +602,6 @@ $( document ).ready(function() {
                 // END OF: for(let i = 0; i < 10; i++) {    
                 }
                 
-    
                 $("html, body").animate({
                     scrollTop: 0
                 }, 250);
