@@ -58,7 +58,7 @@ $( document ).ready(function() {
     //     gifButton.attr("id", searchTerm);
     // });
     
-    var topics = ["volkswagen", "cooking", "poetry", "epl", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "final fantasy tactics", "breath of the wild", "game of life", "fractals"];
+    var topics = ["volkswagen", "cooking", "poetry", "radiohead", "kendrick lamar", "olde english bulldogge", "pekingese", "simpsons", "mr. robot", "rick and morty", "metal gear", "breath of the wild", "game of life", "fractals"];
 
     var counter = {
         "topicAdder": 0,
@@ -69,7 +69,7 @@ $( document ).ready(function() {
     // var trendingBtn = $("<a>");
     trendingBtn.attr("type", "submit");
     // trendingBtn.attr("href", "#Trending");
-    trendingBtn.attr("class", "btn btn-success btn-space gif-button");
+    trendingBtn.attr("class", "btn btn-success btn-space");
     trendingBtn.attr("id", "trending-endpoint");
     trendingBtn.text("Trending");
     trendingBtn.appendTo("#jean-jacket");
@@ -219,15 +219,16 @@ $( document ).ready(function() {
           // console.log(topics);
           $("#search-term").val(" ");
   
-          topicAdder();
-          gifCreator();
-            
+           
         }
+
+        topicAdder();
+        gifCreator();
 
     // END OF: $("#search-endpoint").on("click", function(){
     });
     
-    $('body').on('click','img',function(){
+    $("body").on("click","img",function(){
         // console.log("test!");
         var statusCheck = $(this).attr("data-status"),
             play        = $(this).attr("data-animate"),
@@ -396,7 +397,8 @@ $( document ).ready(function() {
         for (let i = 0; i < 10; i++) {
 
             dotGet.then(function(response) { 
-                console.log(response);
+                // console.log(response);
+                // console.log(i);
                 // console.log("title:", response.data[counter.trending].title);
 
                 // var trendingTitle = response.data[counter.trending].title;
@@ -425,7 +427,11 @@ $( document ).ready(function() {
                 
                 
                 // topicAdder();
-                gifCreator();
+                // gifCreator();
+
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 250);
 
                 
                 
@@ -460,10 +466,85 @@ $( document ).ready(function() {
 
     //     }
 
-
-
     // // END OF: $("#test").on("click", function(){
     // });
+
+
+    $("#play-all").on("click", function (){
+        event.preventDefault();
+
+        // var test = $("#album *");
+        // var test = $("div.gif-holder").children();
+        // var test = $(".gif-holder *");
+        // var test = $("<img> *");
+        // var test = $(".gif-holder *");
+        // var test = $("<img>").each();
+
+        // console.log(test);
+
+
+        $("img").each( function(){
+            var statusCheck = $(this).attr("data-status"),
+                play        = $(this).attr("data-animate"),
+                pause       = $(this).attr("data-still");
+        
+            if (statusCheck === "pause" ) {
+            
+                $(this).attr("src", play );
+                $(this).attr("data-status", "play");
+                
+            }
+
+        // END OF: $("img").each( function(){
+        });
+
+
+
+
+
+        // var statusCheck = $("<img>").attr("data-status"),
+        //     play        = $(this).attr("data-animate"),
+        //     pause       = $(this).attr("data-still");
+    
+        // if (statusCheck === "pause" ) {
+        
+        //     $(this).attr("src", play );
+        //     $(this).attr("data-status", "play");
+            
+        // } else if ( statusCheck === "play") {
+        
+        //     $(this).attr("src", pause );
+        //     $(this).attr("data-status", "pause");
+            
+        // }
+
+
+    // END OF: $("#play-all").on("click", function (){
+    });
+
+    $("#pause-all").on("click", function (){
+        event.preventDefault();
+
+
+
+        $("img").each( function(){
+            var statusCheck = $(this).attr("data-status"),
+                play        = $(this).attr("data-animate"),
+                pause       = $(this).attr("data-still");
+        
+            if ( statusCheck === "play") {
+            
+                $(this).attr("src", pause );
+                $(this).attr("data-status", "pause");
+                
+            }
+
+        // END OF: $("img").each( function(){
+        });
+
+
+    // END OF: $("#pause-all").on("click", function (){
+    });
 
     
   // END OF: $( document ).ready(function() {

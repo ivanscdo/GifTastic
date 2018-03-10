@@ -17,6 +17,12 @@ JAVASCRIPT
         different buttons for each search type;
 
 PROBLEM FINDING; PROBLEM SOLVING
+
+    problems-bin:
+        open all, clear all
+        make it highlight the gif button you are currently on - scrollspy
+
+
     v1.0:
         completed successful test of .get, breaking sections of query url into variables.
 
@@ -37,4 +43,6 @@ PROBLEM FINDING; PROBLEM SOLVING
         make it scroll all the way up when you click search or random or any gif button
 
     problem 1.7
-        make it highlight the gif button you are currently on
+        play all & pause all button
+
+    
